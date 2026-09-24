@@ -1,0 +1,58 @@
+### Env ###
+.env
+.env.*
+!.env.example
+
+### Java / Maven ###
+target/
+*.class
+*.jar
+*.war
+hs_err_pid*
+replay_pid*
+**/.mvn/timing.properties
+dependency-reduced-pom.xml
+
+### Node ###
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+
+### Logs ###
+logs/
+*.log*
+
+### IntelliJ IDEA ###
+.idea
+*.iml
+*.iws
+*.ipr
+out/
+
+### Eclipse / STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+
+### VS Code ###
+.vscode/*
+!.vscode/extensions.json
+
+### Vim ###
+*.swp
+*.swo
+
+### OS ###
+.DS_Store
+Thumbs.db
+[Dd]esktop.ini
+*~
+
+### Docker ###
+docker-compose.override.yml
