@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="pt-br" itemscope itemtype="https://schema.org/WebPage">
+<head>
+    <meta charset="utf-8">
+    <title>Concursos Previstos</title>
+            <meta name="description" content="Concursos Públicos com inscrições abertas e previstas, empregos, estágios, provas, simulados, apostilas preparatórias e videoaulas.">
+                    <meta name="keywords" content="concursos, concurso, concursos publicos, empregos, estagios, curriculo, apostila">
+                        <meta name="robots" content="index,follow,noarchive">
+                <meta name="viewport" content="width=device-width">
+                <meta name="theme-color" content="#205c98">
+        <meta name="msapplication-TileColor" content="#205c98">
+        <meta name="msapplication-TileImage" content="https://www.pciconcursos.com.br/logo.png">
+                <meta itemprop="name" content="Concursos Previstos<">
+        <meta itemprop="description" content="Concursos Públicos com inscrições abertas e previstas, empregos, estágios, provas, simulados, apostilas preparatórias e videoaulas.">
+        <meta itemprop="image" content="https://www.pciconcursos.com.br/logo.png">
+                <meta property="og:type" content="webpage">
+        <meta property="og:title" content="Concursos Previstos">
+        <meta property="og:site_name" content="PCI Concursos">
+                <meta property="og:description" content="Concursos Públicos com inscrições abertas e previstas, empregos, estágios, provas, simulados, apostilas preparatórias e videoaulas.">
+                    <meta property="fb:app_id" content="211905988988008">
+                <meta property="fb:pages" content="115036158551264">
+        <meta property="og:locale" content="pt_BR">
+        <meta property="og:image" content="https://www.pciconcursos.com.br/logo.png">
+                    <meta property="article:publisher" content="https://www.facebook.com/pciconcursos">
+                <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#205c98">
+    <meta name="apple-mobile-web-app-title" content="PCI Concursos">
+            <link rel="apple-touch-icon" href="https://www.pciconcursos.com.br/logo.png">
+                <link rel="search" type="application/opensearchdescription+xml" title="PCI Concursos"
+              href="https://www.pciconcursos.com.br/pesquisa.xml">
+                <link rel="manifest" href="https://www.pciconcursos.com.br/manifest.json">
+                <link rel="shortcut icon" href="https://www.pciconcursos.com.br/favicon.ico">
+            <base target="_top">
+<link rel="dns-prefetch" href="https://cdn.pci.app.br">
+<link rel="preconnect" href="https://cdn.pci.app.br">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap">
+<link rel="stylesheet" href="https://www.pciconcursos.com.br/css/bootstrap.css?31989090">
+<link rel="stylesheet" href="https://www.pciconcursos.com.br/css/custom.css?31989090?31989090">
+<link rel="stylesheet" href="https://www.pciconcursos.com.br/css/all.min.css?31989090">
+<link rel="stylesheet" href="https://www.pciconcursos.com.br/css/slicknav.min.css?31989090">
+<link rel="stylesheet" href="https://www.pciconcursos.com.br/css/site.css?31989090?31989090">
+<link rel="stylesheet" href="https://www.pciconcursos.com.br/css/noticias_index.css?31989090?31989090">
+<script src="https://www.pciconcursos.com.br/js/jquery.js"></script>
+</head>
+<body>
+<div id="menu_nav"></div>
+
+<div id="center">
+    <div id="g-login">
+    <div class="header-bar">
+                    <i class="fab fa-google google-icon"></i>
+            <span id="btn-login" class="login-btn">Entrar com Google</span>
+            </div>
+</div>
+<script>
+    // Aguarda DOM carregar
+    document.addEventListener('DOMContentLoaded', function () {
+        // Botão de login
+        const btnLogin = document.getElementById('btn-login');
+        if (btnLogin) {
+            btnLogin.addEventListener('click', function () {
+                fazerLogin();
+            });
+        }
+        // Botão de logout
+        const btnLogout = document.getElementById('btn-logout');
+        if (btnLogout) {
+            btnLogout.addEventListener('click', function () {
+                fazerLogout();
+            });
+        }
+    });
+
+    // Função de login
+    function fazerLogin() {
+        fetch('/google-auth-api?action=getAuthUrl')
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Abre popup
+                    window.open(data.authUrl, 'googleLogin', 'width=500,height=600');
+                    // Verifica login a cada 3 segundos
+                    const verificar = setInterval(() => {
+                        fetch('/google-auth-api?action=checkLogin')
+                            .then(r => r.json())
+                            .then(resultado => {
+                                if (resultado.success && resultado.logged_in) {
+                                    clearInterval(verificar);
+                                    window.location.reload();
+                                }
+                            });
+                    }, 3000);
+                    // Para verificação após 5 minutos
+                    setTimeout(() => clearInterval(verificar), 300000);
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+            });
+    }
+
+    // Função de logout
+    function fazerLogout() {
+        fetch('/google-auth-api?action=logout')
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.reload();
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+            });
+    }
+</script>    <div id="header">
+        <h1 id="logo"><a href="https://www.pciconcursos.com.br/"><img src="https://cdn.pci.app.br/img/p/pci_logo.png" alt="PCI Concursos"
+                                                       title="PCI Concursos"></a></h1>
+        <nav id="menu-topo">
+            <ul>
+                <li><a href="https://www.pciconcursos.com.br/concursos/">24.960 vagas em concursos</a></li>
+                <li><a href="https://www.pciconcursos.com.br/apostilas/">apostilas</a></li>
+                <li><a href="https://www.pciconcursos.com.br/noticias/">notícias</a></li>
+                <li><a href="https://www.pciconcursos.com.br/provas/">268.415 provas</a></li>
+                <li><a href="https://www.pciconcursos.com.br/contato/">contato</a></li>
+            </ul>
+        </nav>
+    </div>
+
+
+    <nav id="menu">
+        <ul id="menu_lateral">
+            <li class="pginicial"><a href="https://www.pciconcursos.com.br/" class="m_paginainicial"><i class="menu-i fas fa-home"></i>Página Inicial</a></li>
+            <li><a href="https://www.pciconcursos.com.br/apostilas/" class="m_apostilas"><i class="menu-i fas fa-book"></i>Apostilas</a></li>
+            <li><a href="https://www.pciconcursos.com.br/noticias/" class="m_noticias"><i class="menu-i fas fa-newspaper"></i>Notícias</a></li>
+            <li><a href="https://www.pciconcursos.com.br/concursos/" class="m_concursos"><i class="menu-i fa-kit fa-i-br"></i>Concursos</a></li>
+            <li><a href="https://www.pciconcursos.com.br/concursos/nacional/" class="m_nacional"><i class="menu-i fas fa-flag"></i>Nacional</a></li>
+            <li><a href="https://www.pciconcursos.com.br/concursos/sudeste/" class="m_sudeste"><i class="menu-i fa-kit fa-i-sudeste"></i>Sudeste</a></li>
+            <li><a href="https://www.pciconcursos.com.br/concursos/sul/" class="m_sul"><i class="menu-i fa-kit fa-i-sul"></i>Sul</a></li>
+            <li><a href="https://www.pciconcursos.com.br/concursos/norte/" class="m_norte"><i class="menu-i fa-kit fa-i-norte"></i>Norte</a></li>
+            <li><a href="https://www.pciconcursos.com.br/concursos/nordeste/" class="m_nordeste"><i class="menu-i fa-kit fa-i-nordeste"></i>Nordeste</a></li>
+            <li><a href="https://www.pciconcursos.com.br/concursos/centrooeste/" class="m_centrooeste"><i class="menu-i fa-kit fa-i-centrooeste"></i>Centro-Oeste</a></li>
+            <li><a href="https://www.pciconcursos.com.br/ultimas/" class="m_ultimas"><i class="menu-i fas fa-clock"></i>Últimas</a></li>
+            <li><a href="https://www.pciconcursos.com.br/mcp-e-gpt" class="m_mcp"><i class="menu-i fas fa-robot"></i>MCP e GPT</a></li>
+            <li><a href="https://www.pciconcursos.com.br/professores/" class="m_professores"><i class="menu-i fas fa-chalkboard-teacher"></i>Professores</a></li>
+            <!-- <li><a href="https://www.pciconcursos.com.br/previstos/" class="m_previstos"><i class="menu-i fas fa-eye"></i>Previstos</a></li> -->
+            <li><a href="https://www.pciconcursos.com.br/cargos/" class="m_cargos"><i class="menu-i fas fa-briefcase"></i>Cargos</a></li>
+            <li><a href="https://www.pciconcursos.com.br/concursos/cidades/" class="m_cidades"><i class="menu-i fas fa-city"></i>Cidades</a></li>
+            <li><a href="https://www.pciconcursos.com.br/vagas/" class="m_vagas"><i class="menu-i fas fa-user-friends"></i>Vagas</a></li>
+            <li><a href="https://www.pciconcursos.com.br/simulados/" class="m_simulados"><i class="menu-i fas fa-tasks"></i>Simulados</a></li>
+            <li><a href="https://www.pciconcursos.com.br/provas/" class="m_provas"><i class="menu-i fas fa-file-alt"></i>Provas</a></li>
+            <li class="l_aulas"><a href="https://www.pciconcursos.com.br/aulas/" class="m_video"><i class="menu-i fas fa-graduation-cap"></i>Aulas</a>
+                <!-- <ul>
+                    <li><a href="https://www.pciconcursos.com.br/aulas/lingua-portuguesa" class="m_video"><i class="menu-i fas fa-graduation-cap"></i>Aulas Português</a></li>
+                    <li><a href="https://www.pciconcursos.com.br/aulas/matematica/" class="m_video"><i class="menu-i fas fa-graduation-cap"></i>Aulas Matemática</a></li>
+                    <li><a href="https://www.pciconcursos.com.br/aulas/raciocinio-logico/" class="m_video"><i class="menu-i fas fa-graduation-cap"></i>Aulas Rac. Lógico</a></li>
+                    <li><a href="https://www.pciconcursos.com.br/aulas/informatica/" class="m_video"><i class="menu-i fas fa-graduation-cap"></i>Aulas Informática</a></li>
+                    <li><a href="https://www.pciconcursos.com.br/aulas/direito-constitucional/" class="m_video"><i class="menu-i fas fa-graduation-cap"></i>D. Constitucional</a></li>
+                    <li><a href="https://www.pciconcursos.com.br/aulas/direito-administrativo/" class="m_video"><i class="menu-i fas fa-graduation-cap"></i>D. Administrativo</a></li>
+                    <li><a href="https://www.pciconcursos.com.br/aulas/direito-empresarial/" class="m_video"><i class="menu-i fas fa-graduation-cap"></i>D. Empresarial</a></li>
+                    <li><a href="https://www.pciconcursos.com.br/aulas/direito-eleitoral/" class="m_video"><i class="menu-i fas fa-graduation-cap"></i>D. Eleitoral</a></li>
+                    <li><a href="https://www.pciconcursos.com.br/aulas/direito-tributario/" class="m_video"><i class="menu-i fas fa-graduation-cap"></i>D. Tributário</a></li>
+                    <li><a href="https://www.pciconcursos.com.br/aulas/direito-do-trabalho/" class="m_video"><i class="menu-i fas fa-graduation-cap"></i>D. Trabalho</a></li>
+                    <li><a href="https://www.pciconcursos.com.br/aulas/direito-civil/" class="m_video"><i class="menu-i fas fa-graduation-cap"></i>D. Civil</a></li>
+                    <li><a href="https://www.pciconcursos.com.br/aulas/direito-penal/" class="m_video"><i class="menu-i fas fa-graduation-cap"></i>D. Penal</a></li>
+                    <li><a href="https://www.pciconcursos.com.br/aulas/direito-processual-civil/" class="m_video"><i class="menu-i fas fa-graduation-cap"></i>D. Proc. Civil</a></li>
+                    <li><a href="https://www.pciconcursos.com.br/aulas/direito-processual-penal/" class="m_video"><i class="menu-i fas fa-graduation-cap"></i>D. Proc. Penal</a></li>
+                    <li><a href="https://www.pciconcursos.com.br/aulas/direito-processual-do-trabalho/" class="m_video"><i class="menu-i fas fa-graduation-cap"></i>D. Proc. Trabalho</a></li>
+                    <li><a href="https://www.pciconcursos.com.br/aulas/direitos-humanos/" class="m_video"><i class="menu-i fas fa-graduation-cap"></i>D. Humanos</a></li>
+                    <li><a href="https://www.pciconcursos.com.br/aulas/questoes-comentadas/" class="m_video"><i class="menu-i fas fa-graduation-cap"></i>Q. Comentadas</a></li>
+                    <li><a href="https://www.pciconcursos.com.br/aulas/" class="m_video"><i class="menu-i fas fa-graduation-cap"></i>+ Várias Aulas</a></li>
+                </ul>
+            -->
+            </li>
+            <li><a href="https://www.pciconcursos.com.br/organizadoras/" class="m_organizadoras"><i class="menu-i fas fa-building"></i>Organizadoras</a></li>
+            <li><a href="https://www.pciconcursos.com.br/colaborar/" class="m_colaborar"><i class="menu-i fas fa-handshake"></i>Colaborar</a></li>
+            <li><a href="https://www.pciconcursos.com.br/contato/" class="m_contato"><i class="menu-i fas fa-envelope"></i>Contato</a></li>
+        </ul>
+    </nav>
+    <div id="conteudo">
+        <div id="pagina">
+    <div class="emprego_logo" style="height:50px; text-align:center; padding-bottom:5px;">
+        <img src="https://www.pciconcursos.com.br/img/h1_previstos.png">
+    </div>
+    <div class="ads_mobi"><div style="width:320px; height:100px; margin:20px auto 0 auto;"><ins class="adsbygoogle" style="display:inline-block;width:320px;height:100px" data-ad-client="ca-pub-2622407619291980" data-ad-slot="1797634041"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div>
+<div class="ads10"><div class="ads11"><ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-2622407619291980" data-ad-slot="9825760010"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div><div class="ads12"><ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-2622407619291980" data-ad-slot="9825760010"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div>
+
+    <h1>Concursos Previstos</h1>
+    <h2 class="principal">23/06/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-bacen-deve-ser-autorizado-com-140-vagas-120-para-auditor-e-20-para-procurador" title="Concurso Bacen deve ser autorizado com 140 vagas; 120 para auditor e 20 para procurador" class="n1001275">Concurso Bacen deve ser autorizado com 140 vagas; 120 para auditor e 20 para procurador</a></li>
+</ul>
+<h2 class="principal">22/06/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-tce-ma-banca-definida-e-40-vagas-para-niveis-medio-e-superior" title="Concurso TCE-MA: banca definida e 40 vagas para níveis médio e superior" class="n1001270">Concurso TCE-MA: banca definida e 40 vagas para níveis médio e superior</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-policia-cientifica-sp-397-vagas-autorizadas-confira-cargos-salarios-e-areas-de-atuacao" title="Concurso Polícia Científica SP: 397 vagas autorizadas; confira cargos, salários e áreas de atuação" class="n1001269">Concurso Polícia Científica SP: 397 vagas autorizadas; confira cargos, salários e áreas de atuação</a></li>
+</ul>
+<h2 class="principal">19/06/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/terceiro-concurso-da-camara-dos-deputados-para-analistas-esta-em-preparacao" title="Terceiro concurso da Câmara dos Deputados para analistas está em preparação" class="n1001262">Terceiro concurso da Câmara dos Deputados para analistas está em preparação</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-tce-ma-banca-contratada-provas-de-multipla-escolha-e-edital-iminente" title="Concurso TCE-MA: banca contratada, provas de múltipla escolha e edital iminente" class="n1001259">Concurso TCE-MA: banca contratada, provas de múltipla escolha e edital iminente</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/bahia-autoriza-concursos-na-seguranca-com-3300-vagas-para-pm-e-bombeiros" title="Bahia autoriza concursos na Segurança com 3.300 vagas para PM e Bombeiros" class="n1001266">Bahia autoriza concursos na Segurança com 3.300 vagas para PM e Bombeiros</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-dpu-para-defensor-regulamento-publicado-e-etapas-definidas" title="Concurso DPU para Defensor: regulamento publicado e etapas definidas" class="n1001265">Concurso DPU para Defensor: regulamento publicado e etapas definidas</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/sanemar-marica-rj-edital-pronto-e-ajustes-contratuais-em-andamento" title="Sanemar Maricá RJ: edital pronto e ajustes contratuais em andamento" class="n1001263">Sanemar Maricá RJ: edital pronto e ajustes contratuais em andamento</a></li>
+</ul>
+<h2 class="principal">18/06/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-pc-ba-edital-volta-a-ser-previsto-para-julho-e-oferecera-750-vagas" title="Concurso PC BA: edital volta a ser previsto para julho e oferecerá 750 vagas" class="n1001257">Concurso PC BA: edital volta a ser previsto para julho e oferecerá 750 vagas</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/rio-das-ostras-anuncia-concurso-para-a-guarda-municipal-com-previsao-de-selecao-em-2027" title="Rio das Ostras anuncia concurso para a Guarda Municipal com previsão de seleção em 2027" class="n1001256">Rio das Ostras anuncia concurso para a Guarda Municipal com previsão de seleção em 2027</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/prf-solicita-autorizacao-para-533-vagas-nas-areas-policial-e-administrativa" title="PRF solicita autorização para 533 vagas nas áreas Policial e Administrativa" class="n1001249">PRF solicita autorização para 533 vagas nas áreas Policial e Administrativa</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/prefeitura-de-macapa-anuncia-novo-concurso-publico-edital-e-previsto-para-2026" title="Prefeitura de Macapá anuncia novo concurso público; edital é previsto para 2026" class="n1001247">Prefeitura de Macapá anuncia novo concurso público; edital é previsto para 2026</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-pc-al-pode-ter-vagas-para-agente-e-escrivao-apos-parecer-da-procuradoria-geral" title="Concurso PC AL pode ter vagas para agente e escrivão após parecer da Procuradoria-Geral" class="n1001254">Concurso PC AL pode ter vagas para agente e escrivão após parecer da Procuradoria-Geral</a></li>
+</ul>
+<h2 class="principal">17/06/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/defensoria-publica-da-paraiba-escolhe-fcc-para-organizar-seu-primeiro-concurso-de-servidores" title="Defensoria Pública da Paraíba escolhe FCC para organizar seu primeiro concurso de servidores" class="n1001246">Defensoria Pública da Paraíba escolhe FCC para organizar seu primeiro concurso de servidores</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/seduc-ce-assina-contrato-com-funece-e-avanca-em-concurso-com-2-mil-vagas-para-professores" title="Seduc-CE assina contrato com Funece e avança em concurso com 2 mil vagas para professores" class="n1001245">Seduc-CE assina contrato com Funece e avança em concurso com 2 mil vagas para professores</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/camara-de-nilopolis-rj-contrata-banca-e-prepara-novo-concurso-com-35-vagas" title="Câmara de Nilópolis (RJ) contrata banca e prepara novo concurso com 35 vagas" class="n1001242">Câmara de Nilópolis (RJ) contrata banca e prepara novo concurso com 35 vagas</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/guapimirim-rj-avanca-com-novo-concurso-instituto-access-sera-a-banca-organizadora" title="Guapimirim (RJ) avança com novo concurso: Instituto Access será a banca organizadora" class="n1001241">Guapimirim (RJ) avança com novo concurso: Instituto Access será a banca organizadora</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-da-guarda-municipal-de-sao-goncalo-rj-selecon-e-a-banca-vagas-etapas-e-salarios" title="Concurso da Guarda Municipal de São Gonçalo (RJ): Selecon é a banca; vagas, etapas e salários" class="n1001239">Concurso da Guarda Municipal de São Gonçalo (RJ): Selecon é a banca; vagas, etapas e salários</a></li>
+</ul>
+<h2 class="principal">16/06/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/cge-to-inicia-preparacao-de-concurso-com-40-vagas-para-analista-de-controle-interno" title="CGE-TO inicia preparação de concurso com 40 vagas para Analista de Controle Interno" class="n1001237">CGE-TO inicia preparação de concurso com 40 vagas para Analista de Controle Interno</a></li>
+</ul>
+<h2 class="principal">15/06/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-manausprev-banca-sera-oficializada-nos-proximos-dias-e-edital-vem-na-sequencia" title="Concurso ManausPrev: banca será oficializada nos próximos dias e edital vem na sequência" class="n1001233">Concurso ManausPrev: banca será oficializada nos próximos dias e edital vem na sequência</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-sesa-ap-1815-vagas-previstas-em-quatro-eixos-de-lotacao" title="Concurso Sesa/AP: 1.815 vagas previstas em quatro eixos de lotação" class="n1001234">Concurso Sesa/AP: 1.815 vagas previstas em quatro eixos de lotação</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/abin-solicita-concurso-com-301-vagas-pedido-cobre-17-3-do-deficit" title="ABIN solicita concurso com 301 vagas; pedido cobre 17,3% do déficit" class="n1001231">ABIN solicita concurso com 301 vagas; pedido cobre 17,3% do déficit</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-policia-cientifica-sp-comissoes-formadas-e-selecao-com-397-vagas-avanca" title="Concurso Polícia Científica SP: comissões formadas e seleção com 397 vagas avança" class="n1001230">Concurso Polícia Científica SP: comissões formadas e seleção com 397 vagas avança</a></li>
+</ul>
+<h2 class="principal">12/06/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/sefaz-df-atualiza-conteudo-redefine-sindicancia-e-reajusta-taxa-em-aditivo-edital-segue-aguardado" title="Sefaz DF atualiza conteúdo, redefine sindicância e reajusta taxa em aditivo; edital segue aguardado" class="n1001226">Sefaz DF atualiza conteúdo, redefine sindicância e reajusta taxa em aditivo; edital segue aguardado</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-tce-ap-coordenacao-definida-e-novo-edital-em-preparacao" title="Concurso TCE AP: coordenação definida e novo edital em preparação" class="n1001225">Concurso TCE AP: coordenação definida e novo edital em preparação</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-unificado-agu-e-banco-central-autorizacao-em-analise-e-170-vagas" title="Concurso unificado AGU e Banco Central: autorização em análise e 170 vagas" class="n1001224">Concurso unificado AGU e Banco Central: autorização em análise e 170 vagas</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/tj-to-inicia-preparativos-para-novo-concurso-com-equipe-formada-para-contratar-banca" title="TJ TO inicia preparativos para novo concurso com equipe formada para contratar banca" class="n1001223">TJ TO inicia preparativos para novo concurso com equipe formada para contratar banca</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-sesa-ap-banca-contratada-e-edital-proximo-de-ser-publicado" title="Concurso Sesa AP: banca contratada e edital próximo de ser publicado" class="n1001221">Concurso Sesa AP: banca contratada e edital próximo de ser publicado</a></li>
+</ul>
+<h2 class="principal">11/06/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-da-educacao-do-ceara-funece-sera-banca-edital-com-2-mil-vagas-para-docentes" title="Concurso da Educação do Ceará: Funece será banca; edital com 2 mil vagas para docentes" class="n1001219">Concurso da Educação do Ceará: Funece será banca; edital com 2 mil vagas para docentes</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/anpd-busca-autorizacao-para-concurso-com-50-vagas-de-especialista" title="ANPD busca autorização para concurso com 50 vagas de especialista" class="n1001218">ANPD busca autorização para concurso com 50 vagas de especialista</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-saude-rj-287-vagas-e-edital-previsto-para-junho" title="Concurso Saúde RJ: 287 vagas e edital previsto para junho" class="n1001215">Concurso Saúde RJ: 287 vagas e edital previsto para junho</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/receita-federal-pode-ganhar-autorizacao-para-novo-concurso-com-100-vagas-dizem-fontes" title="Receita Federal pode ganhar autorização para novo concurso com 100 vagas, dizem fontes" class="n1001214">Receita Federal pode ganhar autorização para novo concurso com 100 vagas, dizem fontes</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/comissao-do-concurso-da-cge-to-e-instituida-e-selecao-tera-40-vagas" title="Comissão do concurso da CGE-TO é instituída e seleção terá 40 vagas" class="n1001212">Comissão do concurso da CGE-TO é instituída e seleção terá 40 vagas</a></li>
+</ul>
+<h2 class="principal">10/06/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-tce-go-fcc-contratada-para-selecao-de-tecnicos-de-controle-externo" title="Concurso TCE-GO: FCC contratada para seleção de técnicos de controle externo" class="n1001202">Concurso TCE-GO: FCC contratada para seleção de técnicos de controle externo</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-tce-ma-cebraspe-contratado-e-edital-proximo-com-118-vagas-autorizadas" title="Concurso TCE-MA: Cebraspe contratado e edital próximo com 118 vagas autorizadas" class="n1001201">Concurso TCE-MA: Cebraspe contratado e edital próximo com 118 vagas autorizadas</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/pm-ma-mp-amplia-idade-e-ajusta-altura-minima-banca-definida-e-1000-vagas" title="PM MA: MP amplia idade e ajusta altura mínima; banca definida e 1.000 vagas" class="n1001206">PM MA: MP amplia idade e ajusta altura mínima; banca definida e 1.000 vagas</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/novo-concurso-da-policia-penal-de-mt-e-confirmado-283-aprovados-de-2016-serao-chamados" title="Novo concurso da Polícia Penal de MT é confirmado; 283 aprovados de 2016 serão chamados" class="n1001205">Novo concurso da Polícia Penal de MT é confirmado; 283 aprovados de 2016 serão chamados</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/ibge-pede-autorizacao-para-novo-concurso-com-900-vagas-efetivas" title="IBGE pede autorização para novo concurso com 900 vagas efetivas" class="n1001204">IBGE pede autorização para novo concurso com 900 vagas efetivas</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-cgu-tera-60-vagas-para-auditor-e-possibilidade-de-ampliacao-para-120" title="Concurso CGU terá 60 vagas para Auditor e possibilidade de ampliação para 120" class="n1001210">Concurso CGU terá 60 vagas para Auditor e possibilidade de ampliação para 120</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-pc-to-452-vagas-integram-plano-estrategico-de-seguranca-publica" title="Concurso PC TO: 452 vagas integram plano estratégico de Segurança Pública" class="n1001209">Concurso PC TO: 452 vagas integram plano estratégico de Segurança Pública</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-seplan-ap-comissao-formada-inicia-preparativos-no-amapa" title="Concurso Seplan AP: comissão formada inicia preparativos no Amapá" class="n1001208">Concurso Seplan AP: comissão formada inicia preparativos no Amapá</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/alepe-aprova-35-vagas-no-mp-de-pernambuco-e-reajuste-para-carreiras-de-apoio" title="Alepe aprova 35 vagas no MP de Pernambuco e reajuste para carreiras de apoio" class="n1001207">Alepe aprova 35 vagas no MP de Pernambuco e reajuste para carreiras de apoio</a></li>
+</ul>
+<h2 class="principal">09/06/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/policia-cientifica-de-sp-397-vagas-autorizadas-e-escolha-da-banca-em-preparacao" title="Polícia Científica de SP: 397 vagas autorizadas e escolha da banca em preparação" class="n1001200">Polícia Científica de SP: 397 vagas autorizadas e escolha da banca em preparação</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-pgm-manaus-fcc-contratada-edital-iminente-e-salario-inicial-de-29009" title="Concurso PGM Manaus: FCC contratada; edital iminente e salário inicial de R$29.009,10" class="n1001199">Concurso PGM Manaus: FCC contratada; edital iminente e salário inicial de R$29.009,10</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/cnen-solicita-ao-mgi-autorizacao-para-concurso-com-340-vagas" title="CNEN solicita ao MGI autorização para concurso com 340 vagas" class="n1001197">CNEN solicita ao MGI autorização para concurso com 340 vagas</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/fundacao-florestal-sp-avanca-no-concurso-fcc-contratada-e-edital-iminente" title="Fundação Florestal SP avança no concurso: FCC contratada e edital iminente" class="n1001198">Fundação Florestal SP avança no concurso: FCC contratada e edital iminente</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-porto-alegre-fundacao-la-salle-organizara-selecao-para-agente-de-fiscalizacao" title="Concurso Porto Alegre: Fundação La Salle organizará seleção para agente de fiscalização" class="n1001193">Concurso Porto Alegre: Fundação La Salle organizará seleção para agente de fiscalização</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/minas-gerais-institui-comissao-do-concurso-para-eppgg-banca-definida-e-30-vagas" title="Minas Gerais institui comissão do concurso para EPPGG; banca definida e 30 vagas" class="n1001194">Minas Gerais institui comissão do concurso para EPPGG; banca definida e 30 vagas</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/comissao-e-autorizada-para-novo-concurso-da-gestao-governamental-do-amapa" title="Comissão é autorizada para novo concurso da Gestão Governamental do Amapá" class="n1001195">Comissão é autorizada para novo concurso da Gestão Governamental do Amapá</a></li>
+</ul>
+<h2 class="principal">08/06/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-ceeteps-sp-autoriza-561-vagas-para-auxiliar-docente" title="Concurso Ceeteps: SP autoriza 561 vagas para auxiliar docente" class="n1001189">Concurso Ceeteps: SP autoriza 561 vagas para auxiliar docente</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-da-camara-de-cuiaba-comissao-formada-e-previsao-de-43-vagas" title="Concurso da Câmara de Cuiabá: comissão formada e previsão de 43 vagas" class="n1001188">Concurso da Câmara de Cuiabá: comissão formada e previsão de 43 vagas</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/governo-de-pernambuco-analisa-novos-concursos-para-a-seguranca-publica" title="Governo de Pernambuco analisa novos concursos para a Segurança Pública" class="n1001192">Governo de Pernambuco analisa novos concursos para a Segurança Pública</a></li>
+</ul>
+<h2 class="principal">05/06/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-sudam-pedido-de-34-vagas-e-enviado-ao-mgi-edital-projetado-para-2027" title="Concurso Sudam: pedido de 34 vagas é enviado ao MGI; edital projetado para 2027" class="n1001187">Concurso Sudam: pedido de 34 vagas é enviado ao MGI; edital projetado para 2027</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-inea-rj-governo-em-exercicio-sinaliza-150-vagas-e-edital-em-ate-dois-meses" title="Concurso Inea RJ: governo em exercício sinaliza 150 vagas e edital em até dois meses" class="n1001183">Concurso Inea RJ: governo em exercício sinaliza 150 vagas e edital em até dois meses</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/novo-concurso-da-caixa-para-tecnico-bancario-esta-em-estudo-e-pode-ter-cesgranrio-como-banca" title="Novo concurso da Caixa para técnico bancário está em estudo e pode ter Cesgranrio como banca" class="n1001184">Novo concurso da Caixa para técnico bancário está em estudo e pode ter Cesgranrio como banca</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-mme-pedido-de-autorizacao-para-254-vagas-de-nivel-superior" title="Concurso MME: pedido de autorização para 254 vagas de nível superior" class="n1001182">Concurso MME: pedido de autorização para 254 vagas de nível superior</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-sefaz-al-banca-em-definicao-e-edital-proximo" title="Concurso Sefaz AL: banca em definição e edital próximo" class="n1001181">Concurso Sefaz AL: banca em definição e edital próximo</a></li>
+</ul>
+<h2 class="principal">04/06/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/pc-ba-avanca-no-novo-concurso-com-750-vagas-e-edital-proximo" title="PC BA avança no novo concurso com 750 vagas e edital próximo" class="n1001180">PC BA avança no novo concurso com 750 vagas e edital próximo</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/alema-avalia-proposta-de-novo-concurso-edital-pode-sair-ate-dezembro" title="ALEMA avalia proposta de novo concurso; edital pode sair até dezembro" class="n1001177">ALEMA avalia proposta de novo concurso; edital pode sair até dezembro</a></li>
+</ul>
+<h2 class="principal">03/06/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-inpi-pedido-de-502-vagas-de-nivel-superior-e-enviado-ao-mdic" title="Concurso INPI: pedido de 502 vagas de nível superior é enviado ao MDIC" class="n1001176">Concurso INPI: pedido de 502 vagas de nível superior é enviado ao MDIC</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-seduc-pa-avanca-com-escolha-da-banca-e-preve-2-mil-vagas" title="Concurso Seduc PA avança com escolha da banca e prevê 2 mil vagas" class="n1001171">Concurso Seduc PA avança com escolha da banca e prevê 2 mil vagas</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/validade-do-concurso-da-policia-penal-federal-chega-ao-fim-e-novo-edital-ganha-forca" title="Validade do concurso da Polícia Penal Federal chega ao fim e novo edital ganha força" class="n1001169">Validade do concurso da Polícia Penal Federal chega ao fim e novo edital ganha força</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-pc-ba-aocp-e-a-banca-e-edital-segue-previsto-para-maio-com-750-vagas" title="Concurso PC BA: AOCP é a banca e edital segue previsto para maio, com 750 vagas" class="n1001161">Concurso PC BA: AOCP é a banca e edital segue previsto para maio, com 750 vagas</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-pm-pi-fcc-confirmada-como-banca-edital-proximo-e-provas-previstas-para-junho" title="Concurso PM PI: FCC confirmada como banca; edital próximo e provas previstas para junho" class="n1001160">Concurso PM PI: FCC confirmada como banca; edital próximo e provas previstas para junho</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/abin-enfrenta-deficit-de-servidores-de-nivel-medio-e-aguarda-autorizacao-para-novo-concurso" title="Abin enfrenta déficit de servidores de nível médio e aguarda autorização para novo concurso" class="n1001156">Abin enfrenta déficit de servidores de nível médio e aguarda autorização para novo concurso</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/governo-do-para-confirma-concurso-da-policia-civil-com-237-vagas" title="Governo do Pará confirma concurso da Polícia Civil com 237 vagas" class="n1001155">Governo do Pará confirma concurso da Polícia Civil com 237 vagas</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/pm-pi-reabre-escolha-da-banca-e-mantem-concurso-com-cerca-de-mil-vagas" title="PM PI reabre escolha da banca e mantém concurso com cerca de mil vagas" class="n1001151">PM PI reabre escolha da banca e mantém concurso com cerca de mil vagas</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/trt-8-prepara-novo-concurso-comissao-em-formacao-87-cargos-vagos-e-detalhes-do-ultimo-edital" title="TRT-8 prepara novo concurso: comissão em formação, 87 cargos vagos e detalhes do último edital" class="n1001162">TRT-8 prepara novo concurso: comissão em formação, 87 cargos vagos e detalhes do último edital</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/inca-solicita-autorizacao-para-novo-concurso-com-1496-vagas-na-area-de-ciencia-e-tecnologia" title="INCA solicita autorização para novo concurso com 1.496 vagas na área de Ciência e Tecnologia" class="n1001146">INCA solicita autorização para novo concurso com 1.496 vagas na área de Ciência e Tecnologia</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-tj-al-vaga-de-analista-oficial-de-justica-e-avaliador-autorizada" title="Concurso TJ AL: vaga de Analista (Oficial de Justiça e Avaliador) autorizada" class="n1001149">Concurso TJ AL: vaga de Analista (Oficial de Justiça e Avaliador) autorizada</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/ibge-estuda-solicitar-novo-concurso-com-cerca-de-900-vagas-efetivas" title="IBGE estuda solicitar novo concurso com cerca de 900 vagas efetivas" class="n1001164">IBGE estuda solicitar novo concurso com cerca de 900 vagas efetivas</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-pm-pi-edital-previsto-para-junho-e-mais-de-mil-vagas" title="Concurso PM PI: edital previsto para junho e mais de mil vagas" class="n1001165">Concurso PM PI: edital previsto para junho e mais de mil vagas</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/fcc-e-escolhida-para-organizar-o-primeiro-concurso-da-abgf-edital-previsto-e-provas-ate-setembro" title="FCC é escolhida para organizar o primeiro concurso da ABGF; edital previsto e provas até setembro" class="n1001148">FCC é escolhida para organizar o primeiro concurso da ABGF; edital previsto e provas até setembro</a></li>
+</ul>
+<h2 class="principal">02/06/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/senappen-solicita-novo-concurso-para-a-area-penal-federal" title="Senappen solicita novo concurso para a área Penal Federal" class="n1001144">Senappen solicita novo concurso para a área Penal Federal</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-para-procurador-do-banco-central-tera-20-vagas-e-selecao-unificada-com-carreiras-da-agu" title="Concurso para Procurador do Banco Central terá 20 vagas e seleção unificada com carreiras da AGU" class="n1001145">Concurso para Procurador do Banco Central terá 20 vagas e seleção unificada com carreiras da AGU</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/tcdf-oficializa-cebraspe-e-edital-do-novo-concurso-e-iminente" title="TCDF oficializa Cebraspe e edital do novo concurso é iminente" class="n1001142">TCDF oficializa Cebraspe e edital do novo concurso é iminente</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/ibge-deve-publicar-editais-com-9667-vagas-temporarias-em-junho" title="IBGE deve publicar editais com 9.667 vagas temporárias em junho" class="n1001141">IBGE deve publicar editais com 9.667 vagas temporárias em junho</a></li>
+</ul>
+<h2 class="principal">01/06/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-da-camara-de-cuiaba-edital-em-preparacao-com-43-vagas-previstas" title="Concurso da Câmara de Cuiabá: edital em preparação com 43 vagas previstas" class="n1001139">Concurso da Câmara de Cuiabá: edital em preparação com 43 vagas previstas</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-pc-rj-banca-em-fase-final-e-414-vagas-autorizadas" title="Concurso PC RJ: banca em fase final e 414 vagas autorizadas" class="n1001138">Concurso PC RJ: banca em fase final e 414 vagas autorizadas</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/marica-rj-prepara-editais-com-cerca-de-900-vagas-sanemar-deve-sair-em-junho-e-provas-em-agosto" title="Maricá (RJ) prepara editais com cerca de 900 vagas; Sanemar deve sair em junho e provas em agosto" class="n1001137">Maricá (RJ) prepara editais com cerca de 900 vagas; Sanemar deve sair em junho e provas em agosto</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-sape-sc-fepese-e-escolhida-como-organizadora-20-vagas-e-cadastro-de-reserva" title="Concurso SAPE SC: Fepese é escolhida como organizadora; 20 vagas e cadastro de reserva" class="n1001140">Concurso SAPE SC: Fepese é escolhida como organizadora; 20 vagas e cadastro de reserva</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/tcdf-forma-comissao-do-concurso-para-analista-preparativos-do-edital-avancam" title="TCDF forma comissão do concurso para analista; preparativos do edital avançam" class="n1001136">TCDF forma comissão do concurso para analista; preparativos do edital avançam</a></li>
+</ul>
+<h2 class="principal">29/05/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-cge-to-e-autorizado-com-40-vagas-para-analista-de-controle-interno" title="Concurso CGE TO é autorizado com 40 vagas para Analista de Controle Interno" class="n1001134">Concurso CGE TO é autorizado com 40 vagas para Analista de Controle Interno</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/ibge-pede-prorrogacao-para-vagas-de-recenseador-editais-de-outros-cargos-saem-em-junho" title="IBGE pede prorrogação para vagas de recenseador; editais de outros cargos saem em junho" class="n1001133">IBGE pede prorrogação para vagas de recenseador; editais de outros cargos saem em junho</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/cra-rj-escolhe-iades-como-banca-do-proximo-concurso-edital-deve-avancar-apos-contratacao" title="CRA RJ escolhe Iades como banca do próximo concurso; edital deve avançar após contratação" class="n1001132">CRA RJ escolhe Iades como banca do próximo concurso; edital deve avançar após contratação</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/terceiro-edital-da-camara-dos-deputados-para-analista-legislativo-em-areas-especificas-esta-em-preparacao" title="Terceiro edital da Câmara dos Deputados para analista legislativo em áreas específicas está em preparação" class="n1001131">Terceiro edital da Câmara dos Deputados para analista legislativo em áreas específicas está em preparação</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/clin-niteroi-prorroga-por-180-dias-os-trabalhos-da-comissao-do-concurso-novo-prazo-vai-ate-novembro-de-2026" title="Clin Niterói prorroga por 180 dias os trabalhos da comissão do concurso; novo prazo vai até novembro de 2026" class="n1001130">Clin Niterói prorroga por 180 dias os trabalhos da comissão do concurso; novo prazo vai até novembro de 2026</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-inea-rj-crmv-rj-pede-inclusao-de-medicos-veterinarios-e-preparativos-seguem-em-andamento" title="Concurso Inea RJ: CRMV-RJ pede inclusão de médicos-veterinários e preparativos seguem em andamento" class="n1001129">Concurso Inea RJ: CRMV-RJ pede inclusão de médicos-veterinários e preparativos seguem em andamento</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-cgu-2026-e-autorizado-com-60-vagas-para-auditor-edital-pode-sair-ate-dezembro" title="Concurso CGU 2026 é autorizado com 60 vagas para auditor; edital pode sair até dezembro" class="n1001128">Concurso CGU 2026 é autorizado com 60 vagas para auditor; edital pode sair até dezembro</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-alagoas-previdencia-cebraspe-e-escolhido-para-organizar-selecao-de-analista-previdenciario" title="Concurso Alagoas Previdência: Cebraspe é escolhido para organizar seleção de analista previdenciário" class="n1001127">Concurso Alagoas Previdência: Cebraspe é escolhido para organizar seleção de analista previdenciário</a></li>
+</ul>
+<h2 class="principal">28/05/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-casimiro-de-abreu-rj-banca-disponibiliza-pagina-e-edital-e-aguardado" title="Concurso Casimiro de Abreu (RJ): banca disponibiliza página e edital é aguardado" class="n1001125">Concurso Casimiro de Abreu (RJ): banca disponibiliza página e edital é aguardado</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concursos-tocantins-2026-pc-saude-sefaz-e-detran-tem-editais-previstos" title="Concursos Tocantins 2026: PC, Saúde, Sefaz e Detran têm editais previstos" class="n1001124">Concursos Tocantins 2026: PC, Saúde, Sefaz e Detran têm editais previstos</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concursos-no-acre-em-2026-principais-selecoes-previstas-e-autorizadas" title="Concursos no Acre em 2026: principais seleções previstas e autorizadas" class="n1001123">Concursos no Acre em 2026: principais seleções previstas e autorizadas</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/dpe-rj-fgv-e-contratada-para-organizar-o-novo-concurso-de-defensor-publico" title="DPE RJ: FGV é contratada para organizar o novo concurso de defensor público" class="n1001126">DPE RJ: FGV é contratada para organizar o novo concurso de defensor público</a></li>
+</ul>
+<h2 class="principal">27/05/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/saquarema-rj-prepara-concurso-com-1794-vagas-ibam-sera-a-banca" title="Saquarema RJ prepara concurso com 1.794 vagas; IBAM será a banca" class="n1001122">Saquarema RJ prepara concurso com 1.794 vagas; IBAM será a banca</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/sefaz-df-publica-contrato-com-banca-e-sinaliza-edital-proximo-com-256-vagas-para-auditor" title="Sefaz DF publica contrato com banca e sinaliza edital próximo com 256 vagas para auditor" class="n1001121">Sefaz DF publica contrato com banca e sinaliza edital próximo com 256 vagas para auditor</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/bh-instala-comissao-para-novo-concurso-do-iss-com-vagas-para-analista-fazendario" title="BH instala comissão para novo concurso do ISS com vagas para analista fazendário" class="n1001120">BH instala comissão para novo concurso do ISS com vagas para analista fazendário</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/cvm-solicita-119-vagas-de-agente-executivo-de-nivel-medio" title="CVM solicita 119 vagas de agente executivo de nível médio" class="n1001119">CVM solicita 119 vagas de agente executivo de nível médio</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/pm-sc-inicia-preparativos-para-novo-concurso-de-soldado-com-contratacao-de-banca-por-dispensa" title="PM SC inicia preparativos para novo concurso de soldado com contratação de banca por dispensa" class="n1001118">PM SC inicia preparativos para novo concurso de soldado com contratação de banca por dispensa</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/sefaz-sp-oficializa-comissao-do-concurso-para-analista-edital-em-preparacao" title="Sefaz SP oficializa comissão do concurso para analista; edital em preparação" class="n1001117">Sefaz SP oficializa comissão do concurso para analista; edital em preparação</a></li>
+</ul>
+<h2 class="principal">26/05/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-da-pm-do-acre-e-autorizado-com-262-vagas-para-soldado" title="Concurso da PM do Acre é autorizado com 262 vagas para soldado" class="n1001116">Concurso da PM do Acre é autorizado com 262 vagas para soldado</a></li>
+</ul>
+<h2 class="principal">25/05/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-pc-ba-aocp-e-contratada-e-edital-com-750-vagas-deve-sair-em-breve" title="Concurso PC-BA: AOCP é contratada e edital com 750 vagas deve sair em breve" class="n1001115">Concurso PC-BA: AOCP é contratada e edital com 750 vagas deve sair em breve</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-abgf-edital-previsto-para-junho-e-provas-no-segundo-semestre" title="Concurso ABGF: edital previsto para junho e provas no segundo semestre" class="n1001114">Concurso ABGF: edital previsto para junho e provas no segundo semestre</a></li>
+</ul>
+<h2 class="principal">22/05/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/ibge-contrata-duas-bancas-e-avanca-em-selecao-temporaria-com-mais-de-9-mil-vagas" title="IBGE contrata duas bancas e avança em seleção temporária com mais de 9 mil vagas" class="n1001112">IBGE contrata duas bancas e avança em seleção temporária com mais de 9 mil vagas</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/maranhao-confirma-cebraspe-e-detalha-3350-vagas-em-concursos-da-seguranca-publica" title="Maranhão confirma Cebraspe e detalha 3.350 vagas em concursos da Segurança Pública" class="n1001110">Maranhão confirma Cebraspe e detalha 3.350 vagas em concursos da Segurança Pública</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/fcc-e-confirmada-como-banca-do-concurso-pm-pi-edital-deve-sair-em-breve" title="FCC é confirmada como banca do concurso PM PI; edital deve sair em breve" class="n1001108">FCC é confirmada como banca do concurso PM PI; edital deve sair em breve</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-de-auditor-fiscal-de-manaus-fcc-contratada-e-edital-proximo" title="Concurso de Auditor Fiscal de Manaus: FCC contratada e edital próximo" class="n1001107">Concurso de Auditor Fiscal de Manaus: FCC contratada e edital próximo</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/instituto-avalia-organizara-o-concurso-da-policia-penal-rn-perfil-da-banca-e-o-que-estudar" title="Instituto Avalia organizará o concurso da Polícia Penal RN: perfil da banca e o que estudar" class="n1001106">Instituto Avalia organizará o concurso da Polícia Penal RN: perfil da banca e o que estudar</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/tce-ac-cebraspe-contratado-e-edital-para-conselheiro-substituto-pode-sair-em-breve" title="TCE-AC: Cebraspe contratado e edital para conselheiro substituto pode sair em breve" class="n1001105">TCE-AC: Cebraspe contratado e edital para conselheiro substituto pode sair em breve</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/funai-instala-comissao-para-preparar-pedido-de-novo-concurso-publico" title="Funai instala comissão para preparar pedido de novo concurso público" class="n1001104">Funai instala comissão para preparar pedido de novo concurso público</a></li>
+</ul>
+<h2 class="principal">15/05/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-theatro-municipal-rj-comissao-formada-e-banca-definida-edital-proximo" title="Concurso Theatro Municipal RJ: comissão formada e banca definida; edital próximo" class="n1001102">Concurso Theatro Municipal RJ: comissão formada e banca definida; edital próximo</a></li>
+</ul>
+<h2 class="principal">13/05/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/epagri-sc-cria-comissao-para-novo-concurso-com-40-vagas-autorizadas" title="Epagri-SC cria comissão para novo concurso com 40 vagas autorizadas" class="n1001100">Epagri-SC cria comissão para novo concurso com 40 vagas autorizadas</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/alece-assembleia-do-ceara-vota-criacao-de-200-vagas-edital-pode-sair-em-maio" title="Alece: Assembleia do Ceará vota criação de 200 vagas; edital pode sair em maio" class="n1001099">Alece: Assembleia do Ceará vota criação de 200 vagas; edital pode sair em maio</a></li>
+</ul>
+<h2 class="principal">10/05/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/sejus-ro-institui-nova-comissao-para-concurso-publico" title="Sejus RO institui nova comissão para concurso público" class="n1001098">Sejus RO institui nova comissão para concurso público</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-alece-edital-iminente-com-600-vagas-para-niveis-medio-e-superior" title="Concurso Alece: edital iminente com 600 vagas para níveis médio e superior" class="n1001096">Concurso Alece: edital iminente com 600 vagas para níveis médio e superior</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-sefaz-sp-2027-autorizacao-para-60-vagas-de-analista-de-planejamento-orcamento-e-financas-publicas" title="Concurso Sefaz SP 2027: autorização para 60 vagas de Analista de Planejamento, Orçamento e Finanças Públicas" class="n1001095">Concurso Sefaz SP 2027: autorização para 60 vagas de Analista de Planejamento, Orçamento e Finanças Públicas</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-da-policia-tecnico-cientifica-de-sp-397-vagas-autorizadas-cargos-salarios-e-etapas" title="Concurso da Polícia Técnico-Científica de SP: 397 vagas autorizadas; cargos, salários e etapas" class="n1001094">Concurso da Polícia Técnico-Científica de SP: 397 vagas autorizadas; cargos, salários e etapas</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-unificado-de-mg-comissao-oficializada-e-vagas-na-area-ambiental" title="Concurso unificado de MG: comissão oficializada e vagas na área ambiental" class="n1001093">Concurso unificado de MG: comissão oficializada e vagas na área ambiental</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-da-educacao-de-salvador-ba-e-autorizado-com-130-vagas" title="Concurso da Educação de Salvador (BA) é autorizado com 130 vagas" class="n1001092">Concurso da Educação de Salvador (BA) é autorizado com 130 vagas</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/ana-solicita-autorizacao-para-concurso-com-57-vagas-mgi-avalia-pedido" title="ANA solicita autorização para concurso com 57 vagas; MGI avalia pedido" class="n1001097">ANA solicita autorização para concurso com 57 vagas; MGI avalia pedido</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/ms-autoriza-selecao-com-2-mil-vagas-para-professores-da-rede-estadual" title="MS autoriza seleção com 2 mil vagas para professores da rede estadual" class="n1001091">MS autoriza seleção com 2 mil vagas para professores da rede estadual</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-der-mg-comissao-formada-e-cargos-previstos" title="Concurso DER MG: comissão formada e cargos previstos" class="n1001090">Concurso DER MG: comissão formada e cargos previstos</a></li>
+</ul>
+<h2 class="principal">10/03/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/ibge-planeja-selecao-com-39-108-vagas-temporarias-para-o-censo-agro-florestal-e-aquicola" title="IBGE planeja seleção com 39.108 vagas temporárias para o Censo Agro, Florestal e Aquícola" class="n1001088">IBGE planeja seleção com 39.108 vagas temporárias para o Censo Agro, Florestal e Aquícola</a></li>
+</ul>
+<h2 class="principal">02/02/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-da-guarda-municipal-de-teresina-pi-depende-de-orcamento-e-pode-ofertar-300-vagas" title="Concurso da Guarda Municipal de Teresina (PI) depende de orçamento e pode ofertar 300 vagas" class="n1001064">Concurso da Guarda Municipal de Teresina (PI) depende de orçamento e pode ofertar 300 vagas</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-procon-rj-edital-previsto-para-o-inicio-de-fevereiro" title="Concurso Procon RJ: edital previsto para o início de fevereiro" class="n1001063">Concurso Procon RJ: edital previsto para o início de fevereiro</a></li>
+</ul>
+<h2 class="principal">27/01/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-pm-ma-2026-governo-confirma-mais-de-mil-vagas-para-soldado" title="Concurso PM MA 2026: governo confirma mais de mil vagas para soldado" class="n1001059">Concurso PM MA 2026: governo confirma mais de mil vagas para soldado</a></li>
+</ul>
+<h2 class="principal">23/01/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/pc-rj-cesgranrio-organizara-selecao-para-85-vagas-de-delegado-confira-etapas-vagas-e-requisitos" title="PC RJ: Cesgranrio organizará seleção para 85 vagas de delegado; confira etapas, vagas e requisitos" class="n1001054">PC RJ: Cesgranrio organizará seleção para 85 vagas de delegado; confira etapas, vagas e requisitos</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-do-cofen-avanca-pagina-de-inscricoes-no-ar-e-edital-proximo" title="Concurso do Cofen avança: página de inscrições no ar e edital próximo" class="n1001053">Concurso do Cofen avança: página de inscrições no ar e edital próximo</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/prf-estuda-novo-concurso-administrativo-autorizacao-pode-sair-em-2026" title="PRF estuda novo concurso administrativo; autorização pode sair em 2026" class="n1001052">PRF estuda novo concurso administrativo; autorização pode sair em 2026</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/tj-sc-firma-contrato-com-fgv-para-novo-concurso-de-tecnicos-e-analistas" title="TJ SC firma contrato com FGV para novo concurso de técnicos e analistas" class="n1001051">TJ SC firma contrato com FGV para novo concurso de técnicos e analistas</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/trt-pi-inicia-estudos-para-novo-concurso-levantamento-e-preliminar-e-ultimo-edital-segue-valido" title="TRT-PI inicia estudos para novo concurso; levantamento é preliminar e último edital segue válido" class="n1001050">TRT-PI inicia estudos para novo concurso; levantamento é preliminar e último edital segue válido</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-pm-ac-comandante-defende-vagas-regionalizadas-e-novo-limite-de-idade" title="Concurso PM AC: comandante defende vagas regionalizadas e novo limite de idade" class="n1001048">Concurso PM AC: comandante defende vagas regionalizadas e novo limite de idade</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/porto-velho-prepara-concurso-para-cgm-e-semec-cebraspe-sera-a-banca" title="Porto Velho prepara concurso para CGM e Semec; Cebraspe será a banca" class="n1001047">Porto Velho prepara concurso para CGM e Semec; Cebraspe será a banca</a></li>
+</ul>
+<h2 class="principal">22/01/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/prf-pedido-de-concurso-para-area-administrativa-pode-ser-liberado-em-2026" title="PRF: pedido de concurso para área administrativa pode ser liberado em 2026" class="n1001046">PRF: pedido de concurso para área administrativa pode ser liberado em 2026</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/senappen-avanca-em-estudos-para-novo-concurso-e-busca-ampliar-convocacoes-criacao-de-978-cargos-esta-em-analise" title="Senappen avança em estudos para novo concurso e busca ampliar convocações; criação de 978 cargos está em análise" class="n1001044">Senappen avança em estudos para novo concurso e busca ampliar convocações; criação de 978 cargos está em análise</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-funsau-ms-e-autorizado-selecao-tera-provas-e-titulos" title="Concurso Funsau MS é autorizado; seleção terá provas e títulos" class="n1001041">Concurso Funsau MS é autorizado; seleção terá provas e títulos</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/ifce-contrata-banca-e-avanca-em-concurso-com-443-vagas" title="IFCE contrata banca e avança em concurso com 443 vagas" class="n1001040">IFCE contrata banca e avança em concurso com 443 vagas</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-da-camara-dos-deputados-edital-para-policial-legislativo-sai-em-janeiro-cebraspe-sera-a-banca" title="Concurso da Câmara dos Deputados: edital para policial legislativo sai em janeiro; Cebraspe será a banca" class="n1001039">Concurso da Câmara dos Deputados: edital para policial legislativo sai em janeiro; Cebraspe será a banca</a></li>
+</ul>
+<h2 class="principal">19/01/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-inss-cargos-salarios-atribuicoes-e-conteudos-cobrados" title="Concurso INSS: cargos, salários, atribuições e conteúdos cobrados" class="n1001038">Concurso INSS: cargos, salários, atribuições e conteúdos cobrados</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/cnj-prepara-novos-exames-nacionais-dos-cartorios-enac-para-2026-fgv-sera-a-organizadora" title="CNJ prepara novos Exames Nacionais dos Cartórios (Enac) para 2026; FGV será a organizadora" class="n1001037">CNJ prepara novos Exames Nacionais dos Cartórios (Enac) para 2026; FGV será a organizadora</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/mp-al-sinaliza-edital-iminente-para-concurso-de-servidores-banca-definida" title="MP AL sinaliza edital iminente para concurso de servidores; banca definida" class="n1001036">MP AL sinaliza edital iminente para concurso de servidores; banca definida</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concursos-ebserh-como-ingressar-carreiras-salarios-e-ultima-selecao" title="Concursos Ebserh: como ingressar, carreiras, salários e última seleção" class="n1001034">Concursos Ebserh: como ingressar, carreiras, salários e última seleção</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-sanemar-marica-edital-em-elaboracao-com-mais-de-50-vagas-coseac-uff-e-a-organizadora" title="Concurso Sanemar Maricá: edital em elaboração com mais de 50 vagas; Coseac/UFF é a organizadora" class="n1001035">Concurso Sanemar Maricá: edital em elaboração com mais de 50 vagas; Coseac/UFF é a organizadora</a></li>
+</ul>
+<h2 class="principal">18/01/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/teresopolis-rj-assina-contrato-com-banca-edital-do-novo-concurso-e-iminente" title="Teresópolis (RJ) assina contrato com banca; edital do novo concurso é iminente" class="n1001033">Teresópolis (RJ) assina contrato com banca; edital do novo concurso é iminente</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/pc-rj-cesgranrio-e-a-banca-do-concurso-para-delegado-vagas-salarios-e-etapas" title="PC RJ: Cesgranrio é a banca do concurso para delegado; vagas, salários e etapas" class="n1001032">PC RJ: Cesgranrio é a banca do concurso para delegado; vagas, salários e etapas</a></li>
+</ul>
+<h2 class="principal">16/01/2026</h2>
+<ul class="noticias link-d">
+<li><a href="https://www.pciconcursos.com.br/previstos/seap-rj-prepara-selecao-temporaria-com-454-vagas-coseac-uff-sera-a-organizadora" title="Seap RJ prepara seleção temporária com 454 vagas; Coseac UFF será a organizadora" class="n1001031">Seap RJ prepara seleção temporária com 454 vagas; Coseac UFF será a organizadora</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/cesgranrio-e-escolhida-para-organizar-concurso-da-policia-civil-do-rj-com-85-vagas-para-delegado" title="Cesgranrio é escolhida para organizar concurso da Polícia Civil do RJ com 85 vagas para delegado" class="n1001030">Cesgranrio é escolhida para organizar concurso da Polícia Civil do RJ com 85 vagas para delegado</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/concurso-detran-sp-145-vagas-autorizadas-para-agente-edital-previsto-para-2026" title="Concurso Detran SP: 145 vagas autorizadas para agente; edital previsto para 2026" class="n1001029">Concurso Detran SP: 145 vagas autorizadas para agente; edital previsto para 2026</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/tce-ba-preve-novo-concurso-no-orcamento-de-2026" title="TCE-BA prevê novo concurso no orçamento de 2026" class="n1001027">TCE-BA prevê novo concurso no orçamento de 2026</a></li>
+<li><a href="https://www.pciconcursos.com.br/previstos/policia-civil-de-sergipe-solicita-novos-concursos-para-delegado-e-oficial-investigador" title="Polícia Civil de Sergipe solicita novos concursos para delegado e oficial investigador" class="n1001026">Polícia Civil de Sergipe solicita novos concursos para delegado e oficial investigador</a></li>
+</ul>
+
+    <nav aria-label="Navegação de páginas"><ul class="pagination justify-content-center my-4"><li class="page-item"><a class="page-link text-pci font-weight-bold" href="https://www.pciconcursos.com.br/previstos/1">1</a></li><li class="page-item"><a class="page-link text-pci font-weight-bold" href="https://www.pciconcursos.com.br/previstos/2">2</a></li><li class="page-item"><a class="page-link text-pci font-weight-bold" href="https://www.pciconcursos.com.br/previstos/3">3</a></li><li class="page-item"><a class="page-link text-pci font-weight-bold" href="https://www.pciconcursos.com.br/previstos/4">4</a></li><li class="page-item"><a class="page-link text-pci font-weight-bold" href="https://www.pciconcursos.com.br/previstos/5">5</a></li><li class="page-item"><a class="page-link text-pci font-weight-bold" href="https://www.pciconcursos.com.br/previstos/1" aria-label="Próxima"><span class="d-none d-sm-inline">Próxima</span> <i class="fas fa-arrow-right"></i></a></li></ul></nav>
+
+    <div style="padding:10px; margin:0 auto;"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2622407619291980" data-ad-slot="4406933812" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+
+</div>    </div>
+    <div id="lateral">
+        <div id="lateralnoticias">
+            <ul id="lista_lateral_noticias" class="lateral_social">
+                <li><a href="https://www.pciconcursos.com.br/noticias/setec-campinas-sp-abre-concurso-publico-com-salarios-de-ate-10428"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAADUlEQVQImWP4//8/AwAI/AL+hc2rNAAAAABJRU5ErkJggg=="  data-src="https://cdn.pci.app.br/img/c/0015824285815959b92a34607c2ba88c.png" style="height:35px; width:auto; max-width:60px;" class="lazyload"><br>SETEC Campinas - SP abre concurso público com salários de até R$ 10.428,05</a></li>
+<li><a href="https://www.pciconcursos.com.br/noticias/prefeitura-de-andradina-sp-retifica-concurso-publico-para-profissionais-da-educacao"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAADUlEQVQImWP4//8/AwAI/AL+hc2rNAAAAABJRU5ErkJggg=="  data-src="https://cdn.pci.app.br/img/c/c5d718d38ad59991f889de5a51239bcd.png" style="height:35px; width:auto; max-width:60px;" class="lazyload"><br>Prefeitura de Andradina - SP retifica concurso público para profissionais da educação</a></li>
+<li><a href="https://www.pciconcursos.com.br/noticias/prefeitura-de-valenca-rj-abre-concurso-publico-para-professores"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAADUlEQVQImWP4//8/AwAI/AL+hc2rNAAAAABJRU5ErkJggg=="  data-src="https://cdn.pci.app.br/img/c/b11416e6137bcc14a2ad17c61bb4370d.png" style="height:35px; width:auto; max-width:60px;" class="lazyload"><br>Prefeitura de Valença - RJ abre concurso público para professores</a></li>
+<li><a href="https://www.pciconcursos.com.br/noticias/seplag-rj-publica-retificacoes-do-concurso-com-60-vagas-para-cargos-de-nivel-superior"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAADUlEQVQImWP4//8/AwAI/AL+hc2rNAAAAABJRU5ErkJggg=="  data-src="https://cdn.pci.app.br/img/c/02a0902e96add5bdcef15c892a527dbb.png" style="height:35px; width:auto; max-width:60px;" class="lazyload"><br>SEPLAG - RJ publica retificações do concurso com 60 vagas para cargos de nível superior</a></li>
+<li><a href="https://www.pciconcursos.com.br/noticias/prefeitura-de-contagem-mg-abre-concurso-publico-com-salarios-de-ate-13305"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAADUlEQVQImWP4//8/AwAI/AL+hc2rNAAAAABJRU5ErkJggg=="  data-src="https://cdn.pci.app.br/img/c/7de2c0dbeff437f4cd0052b4d16f8acf.png" style="height:35px; width:auto; max-width:60px;" class="lazyload"><br>Prefeitura de Contagem - MG abre concurso público com salários de até R$ 13.305,57</a></li>
+<li><a href="https://www.pciconcursos.com.br/noticias/emater-mg-anuncia-retificacao-de-concurso-publico-com-salarios-de-ate-7321"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAADUlEQVQImWP4//8/AwAI/AL+hc2rNAAAAABJRU5ErkJggg=="  data-src="https://cdn.pci.app.br/img/c/3530c5a26ef24c02aab4a129801f2852.png" style="height:35px; width:auto; max-width:60px;" class="lazyload"><br>EMATER - MG anuncia retificação de concurso público com salários de até R$ 7.321,75</a></li>
+<li><a href="https://www.pciconcursos.com.br/noticias/camara-e-prefeitura-de-trindade-go-divulgam-retificacoes-do-processo-seletivo-e-do-concurso-publico"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAADUlEQVQImWP4//8/AwAI/AL+hc2rNAAAAABJRU5ErkJggg=="  data-src="https://cdn.pci.app.br/img/c/65ebeb4397bb4670c4dff40e3f626f71.png" style="height:35px; width:auto; max-width:60px;" class="lazyload"><br>Câmara e Prefeitura de Trindade - GO divulgam retificações do processo seletivo e do concurso público</a></li>
+<li><a href="https://www.pciconcursos.com.br/noticias/seplad-e-seduc-pa-abrem-concurso-publico-com-vagas-para-diversas-areas-de-atuacao"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAADUlEQVQImWP4//8/AwAI/AL+hc2rNAAAAABJRU5ErkJggg=="  data-src="https://cdn.pci.app.br/img/c/eef4600637c0ee311f15cb36c5a163da.png" style="height:35px; width:auto; max-width:60px;" class="lazyload"><br>SEPLAD e SEDUC - PA abrem concurso público com vagas para diversas áreas de atuação</a></li>
+<li><a href="https://www.pciconcursos.com.br/noticias/prefeitura-de-vilhena-ro-retifica-o-edital-de-processo-seletivo-para-agentes-de-saude-e-de-endemias"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAADUlEQVQImWP4//8/AwAI/AL+hc2rNAAAAABJRU5ErkJggg=="  data-src="https://cdn.pci.app.br/img/c/aa3d2144299614cca60048de38572cf0.png" style="height:35px; width:auto; max-width:60px;" class="lazyload"><br>Prefeitura de Vilhena - RO retifica o edital de processo seletivo para Agentes de Saúde e de Endemias</a></li>
+<li><a href="https://www.pciconcursos.com.br/noticias/seduc-e-seplag-ce-abrem-concurso-publico-com-vagas-para-professores"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAADUlEQVQImWP4//8/AwAI/AL+hc2rNAAAAABJRU5ErkJggg=="  data-src="https://cdn.pci.app.br/img/c/a68845a2093cef1cfee6774e9169748d.png" style="height:35px; width:auto; max-width:60px;" class="lazyload"><br>SEDUC e SEPLAG - CE abrem concurso público com vagas para professores</a></li>
+<li><a href="https://www.pciconcursos.com.br/noticias/prefeitura-de-caruaru-pe-retifica-concurso-publico-para-auditores-e-analistas-fiscais"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAADUlEQVQImWP4//8/AwAI/AL+hc2rNAAAAABJRU5ErkJggg=="  data-src="https://cdn.pci.app.br/img/c/e532acefe81d5739cb8e1b3fdfa621c2.png" style="height:35px; width:auto; max-width:60px;" class="lazyload"><br>Prefeitura de Caruaru - PE retifica concurso público para auditores e analistas fiscais</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="footer">
+        <div>
+            <div class="footer-politica-de-privacidade"><a href="https://www.pciconcursos.com.br/politica-de-privacidade/">Política de
+                    Privacidade e Cancelamento</a></div>
+            <div class="footer-copyright">2000-2026 PCI Concursos ®</div>
+            <div class="footer-redes-sociais">
+                <a target="_blank" href="https://whatsapp.com/channel/0029VaHULn4BFLgS0MkR0M0d"
+                   style="background-color:#25D366;" title="Canal no WhatsApp"><i class="fab fa-whatsapp"
+                                                                                  style="font-size:16px;"></i></a>
+                <a target="_blank" href="https://t.me/pciconcursos" style="background-color:#0088cc;"
+                   title="Telegram"><i class="fas fa-paper-plane" style="font-size:12px;"></i></a>
+                <a target="_blank" href="https://www.linkedin.com/company/pciconcursos/posts/"
+                   style="background-color:#0077B5;" title="Linkedin"><i class="fab fa-linkedin-in"
+                                                                         style="font-size:18px;"></i></a>
+                <a target="_blank" href="https://www.facebook.com/pciconcursos" style="background-color:#3b5998;"
+                   title="Facebook"><i class="fab fa-facebook-f" style="font-size:18px;"></i></a>
+                <a target="_blank" href="https://x.com/pciconcursos" style="background-color:#000000;" title="X"><i
+                            class="fab fa-x-twitter" style="font-size:16px;"></i></a>
+                <a target="_blank" href="https://www.instagram.com/pciconcursos_oficial"
+                   style="background-color:#C13584;" title="Instagram"><i class="fab fa-instagram"
+                                                                          style="font-size:18px; margin-top:1px;"></i></a>
+            </div>
+            <!-- <div class="footer-tel"><a href="https://www.pciconcursos.com.br/contato/">Atendimento /contato</a></div> -->
+            <div id="lgpd" style="display:none;"></div>
+        </div>
+    </div>
+</div>
+<script src="https://www.pciconcursos.com.br/js/jquery.slicknav.min.js"></script>
+<script src="https://www.pciconcursos.com.br/js/js.cookie.min.js"></script>
+<script src="https://www.pciconcursos.com.br/js/site.js?31989090"></script>
+<script src="https://www.pciconcursos.com.br/js/popper.min.js"></script>
+<script src="https://www.pciconcursos.com.br/js/bootstrap.js"></script>
+<link rel="stylesheet" href="https://www.pciconcursos.com.br/icons?s=previstos&h=b85a8bfc30bbf8c665ecd4ba279610af&n=1001275:1001270:1001269:1001262:1001259:1001266:1001265:1001263:1001257:1001256:1001249:1001247:1001254:1001246:1001245:1001242:1001241:1001239:1001237:1001233:1001234:1001231:1001230:1001226:1001225:1001224:1001223:1001221:1001219:1001218:1001215:1001214:1001212:1001202:1001201:1001206:1001205:1001204:1001210:1001209:1001208:1001207:1001200:1001199:1001197:1001198:1001193:1001194:1001195:1001189:1001188:1001192:1001187:1001183:1001184:1001182:1001181:1001180:1001177:1001176:1001171:1001169:1001161:1001160:1001156:1001155:1001151:1001162:1001146:1001149:1001164:1001165:1001148:1001144:1001145:1001142:1001141:1001139:1001138:1001137:1001140:1001136:1001134:1001133:1001132:1001131:1001130:1001129:1001128:1001127:1001125:1001124:1001123:1001126:1001122:1001121:1001120:1001119:1001118:1001117">
+<link rel="stylesheet" href="https://www.pciconcursos.com.br/icons?s=previstos&h=ddef32f66bfe5c34b4c106373e646e13&n=1001116:1001115:1001114:1001112:1001110:1001108:1001107:1001106:1001105:1001104:1001102:1001100:1001099:1001098:1001096:1001095:1001094:1001093:1001092:1001097:1001091:1001090:1001088:1001064:1001063:1001059:1001054:1001053:1001052:1001051:1001050:1001048:1001047:1001046:1001044:1001041:1001040:1001039:1001038:1001037:1001036:1001034:1001035:1001033:1001032:1001031:1001030:1001029:1001027:1001026">
+
+<script>if ('serviceWorker' in navigator && location.hostname === 'www.pciconcursos.com.br') { navigator.serviceWorker.register('/sw.js').catch(() => {}); }</script>
+<script src="https://www.pciconcursos.com.br/js/lazy.js" defer></script>
+<script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2622407619291980" crossorigin="anonymous" defer></script>
+<script src="https://www.googletagmanager.com/gtag/js?id=G-ELMBY7KMP0" defer></script>
+<script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-ELMBY7KMP0');
+</script></body>
+</html>
