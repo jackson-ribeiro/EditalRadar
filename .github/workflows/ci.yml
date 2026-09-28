@@ -5,20 +5,46 @@ on:
     paths:
       - "backend/**"
       - "frontend/**"
+      - ".github/workflows/ci.yml"
   pull_request:
     branches: [main]
     paths:
       - "backend/**"
       - "frontend/**"
+      - ".github/workflows/ci.yml"
   workflow_dispatch:
 
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+  pull-requests: read
+
 jobs:
+  mudancas:
+    name: Mudanças
+    runs-on: ubuntu-latest
+    outputs:
+      backend: ${{ steps.filtro.outputs.backend }}
+      frontend: ${{ steps.filtro.outputs.frontend }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: dorny/paths-filter@v3
+        id: filtro
+        with:
+          filters: |
+            backend:
+              - "backend/**"
+            frontend:
+              - "frontend/**"
+
   backend:
     name: Backend
+    needs: mudancas
+    if: github.event_name == 'workflow_dispatch' || needs.mudancas.outputs.backend == 'true'
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -37,6 +63,8 @@ jobs:
 
   frontend:
     name: Frontend
+    needs: mudancas
+    if: github.event_name == 'workflow_dispatch' || needs.mudancas.outputs.frontend == 'true'
     runs-on: ubuntu-latest
     defaults:
       run:
