@@ -27,7 +27,7 @@ describe('TabelaConcursos', () => {
       <TabelaConcursos
         pagina={pagina([
           concurso({ id: 1, orgao: 'Prefeitura de Contagem', urlOrigem: 'https://www.pciconcursos.com.br/noticias/contagem',
-            novo: true, cargo: 'Vários Cargos', cargos: ['Assistente', 'Analista de TI (1 vaga)'], uf: 'MG' }),
+            novo: true, cargo: 'Vários Cargos', cargos: ['Assistente', 'Analista de TI (1 vaga)'], cargosTi: ['Analista de TI (1 vaga)'], uf: 'MG' }),
           concurso({ id: 2, orgao: 'CRBio-01', uf: null, nacional: true, salarioMax: 7181.5 }),
         ])}
         carregando={false} erro={null} status="ABERTO" filtroAtivo={false} {...acoes()}
@@ -39,7 +39,8 @@ describe('TabelaConcursos', () => {
     expect(link).toHaveAttribute('target', '_blank')
     const linhaContagem = link.closest('tr')!
     expect(within(linhaContagem).getByText('novo')).toBeInTheDocument()
-    expect(within(linhaContagem).getByText('Vários cargos (2)')).toHaveAttribute('title', 'Assistente\nAnalista de TI (1 vaga)')
+    expect(within(linhaContagem).getByText('Analista de TI (1 vaga)')).toHaveAttribute('title', 'Analista de TI (1 vaga)\nAssistente')
+    expect(within(linhaContagem).getByText('+1 outro cargo')).toBeInTheDocument()
     const linhaCrbio = screen.getByRole('link', { name: 'CRBio-01' }).closest('tr')!
     expect(within(linhaCrbio).getByText('Nacional')).toBeInTheDocument()
     expect(within(linhaCrbio).getByText('R$ 7.181,50')).toBeInTheDocument()

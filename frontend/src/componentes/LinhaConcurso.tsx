@@ -1,6 +1,6 @@
 import type { MouseEvent } from 'react'
 import type { Concurso } from '../api/tipos'
-import { descreverCargo, formatarMoeda } from '../formatos'
+import { descreverCargo, formatarMoeda, listaCargos } from '../formatos'
 import { PainelResumo } from './PainelResumo'
 import { ReguaPrazo } from './ReguaPrazo'
 
@@ -15,8 +15,8 @@ interface Props {
 }
 
 export function LinhaConcurso({ concurso, aberto, aoAlternar }: Props) {
-  const cargo = descreverCargo(concurso.cargo, concurso.cargos)
-  const titulo = concurso.cargos.length > 1 ? concurso.cargos.join('\n') : undefined
+  const cargo = descreverCargo(concurso)
+  const titulo = listaCargos(concurso)
   const semVagasComReserva = concurso.vagas == null && concurso.cadastroReserva
   const idPainel = `resumo-${concurso.id}`
 
@@ -54,8 +54,9 @@ export function LinhaConcurso({ concurso, aberto, aoAlternar }: Props) {
             {concurso.orgao}
           </a>
           {concurso.novo && <span className="ml-2 text-xs font-bold text-caneta">novo</span>}
-          <span className="mt-0.5 block text-[13px] text-grafite" title={titulo}>
-            {cargo}
+          <span className="mt-0.5 block text-[13px] text-grafite">
+            <span title={titulo}>{cargo.principal}</span>
+            {cargo.complemento && <span className="ml-1.5 inline-block whitespace-nowrap text-[12px] text-grafite/70">{cargo.complemento}</span>}
           </span>
         </td>
         <td className={`${CELULA_INLINE} pr-1`}>{concurso.nacional ? 'Nacional' : (concurso.uf ?? '—')}</td>

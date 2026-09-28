@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import {
   descreverCargo,
+  listaCargos,
   descreverDuracao,
   descreverMomento,
   formatarData,
@@ -95,11 +96,44 @@ describe('formatos', () => {
   })
 
   it('descreve o cargo sem assumir que o primeiro é de TI', () => {
-    expect(descreverCargo('Analista de Sistemas', ['A', 'B'])).toBe('Analista de Sistemas')
-    expect(descreverCargo('Vários Cargos', ['Analista de TI (1 vaga)'])).toBe('Analista de TI (1 vaga)')
-    expect(descreverCargo('Vários Cargos', ['Assistente', 'Analista de TI', 'Arquiteto'])).toBe('Vários cargos (3)')
-    expect(descreverCargo('Vários Cargos', [])).toBe('Vários Cargos')
-    expect(descreverCargo(null, [])).toBe('Cargo não informado')
+    const cargo = (c: string | null, cargos: string[], cargosTi: string[] = []) => descreverCargo({ cargo: c, cargos, cargosTi })
+    expect(cargo('Analista de Sistemas', ['A', 'B'])).toEqual({ principal: 'Analista de Sistemas', complemento: null })
+    expect(cargo('Vários Cargos', ['Analista de TI (1 vaga)'])).toEqual({ principal: 'Analista de TI (1 vaga)', complemento: null })
+    expect(cargo('Vários Cargos', ['Assistente', 'Analista de TI', 'Arquiteto'])).toEqual({ principal: 'Vários cargos (3)', complemento: null })
+    expect(cargo('Vários Cargos', [])).toEqual({ principal: 'Vários Cargos', complemento: null })
+    expect(cargo(null, [])).toEqual({ principal: 'Cargo não informado', complemento: null })
+  })
+
+  it('destaca o cargo de TI e resume os demais', () => {
+    const cargo = (c: string | null, cargos: string[], cargosTi: string[]) => descreverCargo({ cargo: c, cargos, cargosTi })
+    const outros = Array.from({ length: 20 }, (_, i) => `Cargo ${i}`)
+    expect(cargo('Vários Cargos', [...outros, 'Ciência da Computação'], ['Ciência da Computação']))
+      .toEqual({ principal: 'Ciência da Computação', complemento: '+20 outros cargos' })
+    expect(cargo('Vários Cargos', ['Assistente', 'Técnico em TI'], ['Técnico em TI']))
+      .toEqual({ principal: 'Técnico em TI', complemento: '+1 outro cargo' })
+    expect(cargo('Vários Cargos', ['Técnico em TI', 'Programador', 'Analista de TI'], ['Técnico em TI', 'Programador', 'Analista de TI']))
+      .toEqual({ principal: 'Técnico em TI', complemento: '+2 de TI' })
+    expect(cargo('Vários Cargos', ['A', 'Técnico em TI', 'Programador', 'B', 'Analista de TI'], ['Técnico em TI', 'Programador', 'Analista de TI']))
+      .toEqual({ principal: 'Técnico em TI', complemento: '+2 de TI · +2 outros' })
+  })
+
+  it('prefere o cargo de TI ao cargo específico da listagem', () => {
+    expect(descreverCargo({
+      cargo: 'Analista Previdenciário, Técnico Previdenciário',
+      cargos: ['Analista Previdenciário - Direito', 'Analista Previdenciário - Tecnologia da Informação (2 vagas + CR)'],
+      cargosTi: ['Analista Previdenciário - Tecnologia da Informação (2 vagas + CR)'],
+    })).toEqual({ principal: 'Analista Previdenciário - Tecnologia da Informação (2 vagas + CR)', complemento: '+1 outro cargo' })
+  })
+
+  it('mantém o cargo da listagem quando ele é o único', () => {
+    expect(descreverCargo({ cargo: 'Analista de Sistemas Júnior', cargos: ['Analista de Sistemas Júnior (1 vaga)'],
+      cargosTi: ['Analista de Sistemas Júnior (1 vaga)'] })).toEqual({ principal: 'Analista de Sistemas Júnior', complemento: null })
+  })
+
+  it('lista os cargos de TI primeiro no detalhe da linha', () => {
+    expect(listaCargos({ cargos: ['Assistente', 'Analista de TI', 'Arquiteto'], cargosTi: ['Analista de TI'] }))
+      .toBe('Analista de TI\nAssistente\nArquiteto')
+    expect(listaCargos({ cargos: ['Analista de TI'], cargosTi: ['Analista de TI'] })).toBeUndefined()
   })
 })
 

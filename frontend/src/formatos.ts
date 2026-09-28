@@ -86,12 +86,31 @@ export function normalizar(texto: string): string {
   return texto.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().trim()
 }
 
-export function descreverCargo(cargo: string | null, cargos: string[]): string {
+export function descreverCargo(
+  concurso: Pick<Concurso, 'cargo' | 'cargos' | 'cargosTi'>,
+): { principal: string; complemento: string | null } {
+  const { cargo, cargos, cargosTi } = concurso
   const generico = !cargo || normalizar(cargo).startsWith('varios cargos')
-  if (!generico) return cargo
-  if (cargos.length === 1) return cargos[0]
-  if (cargos.length > 1) return `Vários cargos (${cargos.length})`
-  return cargo ?? 'Cargo não informado'
+  if (cargosTi.length > 0 && (generico || cargos.length > 1)) {
+    return { principal: cargosTi[0], complemento: complementoCargos(cargosTi.length - 1, cargos.length - cargosTi.length) }
+  }
+  if (!generico) return { principal: cargo, complemento: null }
+  if (cargos.length === 1) return { principal: cargos[0], complemento: null }
+  if (cargos.length > 1) return { principal: `Vários cargos (${cargos.length})`, complemento: null }
+  return { principal: cargo ?? 'Cargo não informado', complemento: null }
+}
+
+function complementoCargos(outrosTi: number, outros: number): string | null {
+  if (outrosTi > 0 && outros > 0) return `+${outrosTi} de TI · +${outros} ${outros === 1 ? 'outro' : 'outros'}`
+  if (outrosTi > 0) return `+${outrosTi} de TI`
+  if (outros > 0) return outros === 1 ? '+1 outro cargo' : `+${outros} outros cargos`
+  return null
+}
+
+export function listaCargos(concurso: Pick<Concurso, 'cargos' | 'cargosTi'>): string | undefined {
+  if (concurso.cargos.length <= 1) return undefined
+  const ti = new Set(concurso.cargosTi)
+  return [...concurso.cargosTi, ...concurso.cargos.filter((cargo) => !ti.has(cargo))].join('\n')
 }
 
 export type ResumoValor =
