@@ -1,0 +1,111 @@
+spring:
+  application:
+    name: editalradar
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:editalradar}
+    username: ${DB_USER:editalradar}
+    password: ${DB_PASSWORD:editalradar}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: true
+  jackson:
+    time-zone: America/Sao_Paulo
+
+server:
+  port: ${PORT:8080}
+
+editalradar:
+  cors:
+    origens-permitidas:
+      - http://localhost:5173
+  coleta:
+    habilitada: true
+    cron: "0 0 7 * * *"
+    zona: America/Sao_Paulo
+    base-url: https://www.pciconcursos.com.br
+    user-agent: "EditalRadar/0.1 (projeto pessoal; contato: github.com/jackson-ribeiro)"
+    delay-min: 1000ms
+    delay-max: 2000ms
+    timeout: 20s
+    max-tentativas: 3
+    detalhes-por-execucao: 600
+    mcp:
+      habilitado: true
+      url: https://mcp.pciconcursos.com.br/mcp
+      termos:
+        - analista de sistemas
+        - analista de tecnologia da informação
+        - tecnologia da informação
+        - desenvolvedor
+        - programador
+        - técnico em informática
+        - técnico de informática
+        - infraestrutura de ti
+        - redes
+        - segurança da informação
+        - banco de dados
+        - ciência de dados
+        - suporte técnico
+    previstos:
+      habilitado: true
+      max-idade-dias: 180
+  ti:
+    palavras-chave:
+      - analista de sistemas
+      - analista de ti
+      - analista de tic
+      - de ti
+      - em ti
+      - analista de tecnologia
+      - tecnologia da informação
+      - desenvolvedor
+      - desenvolvedora
+      - desenvolvimento de sistemas
+      - programador
+      - programadora
+      - programação
+      - engenheiro de software
+      - engenharia de software
+      - infraestrutura de ti
+      - infraestrutura de tecnologia
+      - redes de computadores
+      - analista de redes
+      - técnico em redes
+      - segurança da informação
+      - segurança cibernética
+      - banco de dados
+      - administrador de dados
+      - ciência de dados
+      - cientista de dados
+      - analista de dados
+      - engenheiro de dados
+      - suporte técnico em informática
+      - suporte de ti
+      - analista de suporte
+      - informática
+      - computação
+      - sistemas de informação
+      - devops
+    exclusoes:
+      - noções de informática
+      - conhecimentos de informática
+      - informática básica
+      - professor de informática
+      - professor substituto de informática
+      - instrutor de informática
+    # Um cargo ou título com qualquer um destes termos nunca conta como TI (vagas de ensino).
+    termos-ensino:
+      - professor
+      - docente
+      - peb
+      - educação básica
+      - bncc
+      - instrutor
+      - tutor
