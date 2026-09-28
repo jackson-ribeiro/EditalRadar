@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@theme {
+  --color-noite: #121A24;
+  --color-mesa: #1A2431;
+  --color-linha: #2A3544;
+  --color-papel: #ECE6D9;
+  --color-grafite: #8E99A8;
+  --color-caneta: #86A8FF;
+  --color-prazo: #F2A541;
+  --color-vencendo: #F0643C;
+  --font-titulo: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Atkinson Hyperlegible Next", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-noite text-papel font-sans antialiased;
+    font-variant-numeric: tabular-nums;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-caneta);
+    outline-offset: 2px;
+  }
+}
