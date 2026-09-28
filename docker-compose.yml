@@ -1,0 +1,72 @@
+name: editalradar
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: editalradar-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-editalradar}
+      POSTGRES_USER: ${POSTGRES_USER:-editalradar}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-editalradar}
+      TZ: America/Sao_Paulo
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  maven-cache-permissoes:
+    image: busybox:stable
+    command: ["chown", "-R", "${UID_DEV:-1000}:${GID_DEV:-1000}", "/cache"]
+    volumes:
+      - maven-cache:/cache
+
+  backend:
+    image: eclipse-temurin:21-jdk
+    container_name: editalradar-backend
+    working_dir: /app
+    command: ["./mvnw", "-B", "-Dmaven.repo.local=/tmp/home/.m2/repository", "spring-boot:run"]
+    user: "${UID_DEV:-1000}:${GID_DEV:-1000}"
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: ${POSTGRES_DB}
+      DB_USER: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      TZ: America/Sao_Paulo
+      HOME: /tmp/home
+    volumes:
+      - ./backend:/app
+      - maven-cache:/tmp/home/.m2
+    ports:
+      - "${BACKEND_PORT:-8080}:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      maven-cache-permissoes:
+        condition: service_completed_successfully
+
+  frontend:
+    image: node:22-alpine
+    container_name: editalradar-frontend
+    working_dir: /app
+    command: ["sh", "-c", "npm ci && npm run dev -- --host 0.0.0.0 --port 5173 --strictPort"]
+    environment:
+      VITE_API_PROXY: http://backend:8080
+    volumes:
+      - ./frontend:/app
+      - frontend-node-modules:/app/node_modules
+    ports:
+      - "${FRONTEND_PORT:-5173}:5173"
+    depends_on:
+      - backend
+
+volumes:
+  postgres-data:
+  maven-cache:
+  frontend-node-modules:
