@@ -1,5 +1,6 @@
 package br.com.editalradar.web;
 
+import br.com.editalradar.coleta.ColetaEmAndamentoException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.TypeMismatchException;
@@ -23,6 +24,13 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     public ProblemDetail parametroInvalido(ParametroInvalidoException e) {
         ProblemDetail problema = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, e.getMessage());
         problema.setTitle("Parâmetro inválido");
+        return problema;
+    }
+
+    @ExceptionHandler(ColetaEmAndamentoException.class)
+    public ProblemDetail coletaEmAndamento(ColetaEmAndamentoException e) {
+        ProblemDetail problema = ProblemDetail.forStatusAndDetail(HttpStatus.CONFLICT, e.getMessage());
+        problema.setTitle("Coleta em andamento");
         return problema;
     }
 
