@@ -60,6 +60,35 @@ describe('Cabecalho', () => {
     render(<Cabecalho sync={sync({ ultima: coleta({}), erro: 'O servidor caiu.' })} agora={AGORA} />)
     expect(screen.getByRole('alert')).toHaveTextContent('O servidor caiu.')
   })
+
+  it('coleta sem avisos não mostra contagem', () => {
+    render(<Cabecalho sync={sync({ ultima: coleta({}) })} agora={AGORA} />)
+    expect(screen.queryByRole('button', { name: /aviso/ })).not.toBeInTheDocument()
+  })
+
+  it('avisos da última coleta aparecem ao clicar na contagem', async () => {
+    const avisos = ['Falha no detalhe de https://x: timeout', 'Falha ao coletar previstos: layout mudou']
+    render(<Cabecalho sync={sync({ ultima: coleta({ avisos }) })} agora={AGORA} />)
+    const botao = screen.getByRole('button', { name: '2 avisos' })
+    expect(botao).toHaveAttribute('aria-expanded', 'false')
+    expect(screen.queryByText(avisos[0])).not.toBeInTheDocument()
+
+    await userEvent.click(botao)
+
+    expect(botao).toHaveAttribute('aria-expanded', 'true')
+    expect(screen.getByText(avisos[0])).toBeInTheDocument()
+    expect(screen.getByText(avisos[1])).toBeInTheDocument()
+  })
+
+  it('um único aviso usa o singular', () => {
+    render(<Cabecalho sync={sync({ ultima: coleta({ avisos: ['MCP indisponível'] }) })} agora={AGORA} />)
+    expect(screen.getByRole('button', { name: '1 aviso' })).toBeInTheDocument()
+  })
+
+  it('não mostra avisos enquanto coleta', () => {
+    render(<Cabecalho sync={sync({ coletando: true, ultima: coleta({ avisos: ['MCP indisponível'] }) })} agora={AGORA} />)
+    expect(screen.queryByRole('button', { name: /aviso/ })).not.toBeInTheDocument()
+  })
 })
 
 describe('FraseDestaque', () => {
