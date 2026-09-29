@@ -45,6 +45,12 @@ services:
       - maven-cache:/tmp/home/.m2
     ports:
       - "${BACKEND_PORT:-8080}:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs http://localhost:8080/actuator/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5m
     depends_on:
       postgres:
         condition: service_healthy
@@ -64,7 +70,8 @@ services:
     ports:
       - "${FRONTEND_PORT:-5173}:5173"
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
 
 volumes:
   postgres-data:
